@@ -185,8 +185,12 @@ if prompt := st.chat_input("Nhập tin nhắn..."):
     
     with st.chat_message("assistant"):
         st.markdown(response_text)
-        if response_image:
-            st.image(response_image, caption="Bài làm chi tiết", use_container_width=True)
-
-
-
+        
+        # LOGIC HIỂN THỊ ẢNH MỚI
+        if response_image_link: # Nếu Gemini hoặc logic tìm thấy link ảnh
+            with st.spinner("Đang tải bài làm..."):
+                image_data = get_image_data(response_image_link)
+                if image_data:
+                    st.image(image_data, caption="Bài làm chi tiết", use_container_width=True)
+                else:
+                    st.error("Không tải được ảnh. Vui lòng kiểm tra lại quyền truy cập file.")
