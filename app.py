@@ -50,7 +50,7 @@ def get_credentials():
 # Kết nối Gemini
 try:
     genai.configure(api_key=st.secrets["gemini_api_key"])
-    model = genai.GenerativeModel('gemini-1.5-flash') # Dùng bản Flash cho nhanh
+    model = genai.GenerativeModel('gemini-2.5-flash') # Dùng bản Flash cho nhanh
 except Exception as e:
     st.error("⚠️ Lỗi cấu hình API Key Gemini. Vui lòng kiểm tra lại Secrets.")
     st.stop()
@@ -62,7 +62,7 @@ def get_data():
         creds = get_credentials()
         client = gspread.authorize(creds)
         # --- BẠN HÃY THAY LINK GOOGLE SHEET CỦA BẠN VÀO DÒNG DƯỚI ---
-        SHEET_URL = "https://docs.google.com/spreadsheets/d/THAY_ID_SHEET_CUA_BAN_VAO_DAY/edit" 
+        SHEET_URL = "https://docs.google.com/spreadsheets/d/1C36wek7yVD28NHWGBuqvi_1wHoA0Ysa22dQ6VkOm6dg/edit" 
         
         sheet = client.open_by_url(SHEET_URL).sheet1
         return sheet.get_all_records()
@@ -259,3 +259,4 @@ if prompt := st.chat_input("Nhập tin nhắn..."):
         st.markdown(response_text)
         if response_image_bytes:
             st.image(response_image_bytes, caption="📸 Bài làm chi tiết", use_container_width=True)
+
