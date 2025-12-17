@@ -174,7 +174,7 @@ if prompt := st.chat_input("Nhập tin nhắn..."):
                         response_image = potential_img
                         # Có thể chọn ẩn link gốc trong text đi nếu muốn, ở đây ta cứ để nguyên
         except Exception as e:
-            response_text = "Hệ thống đang bận, em thử hỏi lại nhé."
+            response_text = f"⚠️ Lỗi kết nối AI: {str(e)}"
 
     # 4.3 Phản hồi lại User
     msg_obj = {"role": "assistant", "content": response_text}
@@ -187,4 +187,5 @@ if prompt := st.chat_input("Nhập tin nhắn..."):
         st.markdown(response_text)
         if response_image:
             st.image(response_image, caption="Bài làm chi tiết", use_container_width=True)
+
 
