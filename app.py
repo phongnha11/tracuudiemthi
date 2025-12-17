@@ -26,7 +26,7 @@ try:
     
     # Cấu hình Gemini
     genai.configure(api_key=st.secrets["gemini_api_key"])
-    model = genai.GenerativeModel('gemini-pro')
+    model = genai.GenerativeModel('gemini-1.5-flash')
 except Exception as e:
     st.error("⚠️ Lỗi cấu hình! Vui lòng kiểm tra lại file Secrets.")
     st.stop()
@@ -187,3 +187,4 @@ if prompt := st.chat_input("Nhập tin nhắn..."):
         st.markdown(response_text)
         if response_image:
             st.image(response_image, caption="Bài làm chi tiết", use_container_width=True)
+
