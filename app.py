@@ -141,7 +141,7 @@ def call_gemini_rotated(prompt, user_data):
     try:
         # 2. Cấu hình AI
         genai.configure(api_key=selected_key)
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        model = genai.GenerativeModel('gemini-2.5-flash')
         
         # 3. Tạo ngữ cảnh
         context = "Bảng điểm:\n"
@@ -247,3 +247,4 @@ if prompt := st.chat_input("Nhập tin nhắn..."):
         st.markdown(resp_text)
         if resp_img_bytes:
             st.image(resp_img_bytes, caption="📸 Bài làm", use_container_width=True)
+
