@@ -233,7 +233,7 @@ def call_gemini_chat(prompt, user_data):
     keys = st.secrets["gemini_keys"]
     try:
         genai.configure(api_key=random.choice(keys))
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        model = genai.GenerativeModel('gemini-2.5-flash')
         
         # Tạo ngữ cảnh (Đã lọc trùng môn)
         context = ""
@@ -347,4 +347,5 @@ if prompt := st.chat_input("Nhập tin nhắn..."):
         st.markdown(resp_text)
         if resp_img_bytes:
             st.image(resp_img_bytes, caption="📄 Bài làm chi tiết", use_container_width=True)
+
 
