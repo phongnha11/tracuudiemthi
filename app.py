@@ -133,7 +133,7 @@ def get_data():
         creds = get_credentials()
         client = gspread.authorize(creds)
         # --- THAY URL GOOGLE SHEET CỦA BẠN VÀO ĐÂY ---
-        SHEET_URL = "https://docs.google.com/spreadsheets/d/THAY_ID_SHEET_CUA_BAN/edit" 
+        SHEET_URL = "https://docs.google.com/spreadsheets/d/1C36wek7yVD28NHWGBuqvi_1wHoA0Ysa22dQ6VkOm6dg/edit" 
         return client.open_by_url(SHEET_URL).sheet1.get_all_records()
     except Exception as e:
         st.error(f"❌ Lỗi kết nối dữ liệu: {str(e)}")
@@ -210,7 +210,7 @@ def call_gemini_analysis(prompt, user_data, subject_name, image_bytes):
     rubric = EXAM_RUBRICS.get(subject_name, "Chưa có rubric chi tiết.")
     keys = st.secrets["gemini_keys"] # Lấy danh sách key
     genai.configure(api_key=random.choice(keys)) # Xoay vòng key
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    model = genai.GenerativeModel('gemini-2.5-flash')
 
     sys_prompt = f"""
     Bạn là giáo viên bộ môn {subject_name}. Học sinh: {user_data.get('HoTen')}.
@@ -347,3 +347,4 @@ if prompt := st.chat_input("Nhập tin nhắn..."):
         st.markdown(resp_text)
         if resp_img_bytes:
             st.image(resp_img_bytes, caption="📄 Bài làm chi tiết", use_container_width=True)
+
